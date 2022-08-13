@@ -12,7 +12,7 @@ export default function Home() {
         <title>Turtle Clone</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <Intro></Intro>
+      <Intro />
       <div className={styles.container}>Hello</div>
     </>
   );
