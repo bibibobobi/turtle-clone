@@ -1,34 +1,71 @@
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 import styles from './Intro.module.css';
 
 const Intro = () => {
+  // determined if page has scrolled and if the view is on mobile
+  const [firstScene, setFirstScene] = useState(false);
+  const [secondScene, setSecondScene] = useState(false);
+  const [thirdScene, setThirdScene] = useState(false);
+
+  // change state on scroll
+  useEffect(() => {
+    const handleScenes = () => {
+      console.log(window.scrollY);
+      //305 850 1580
+
+      if (window.scrollY >= 0 && window.scrollY < 350) {
+        setFirstScene(true);
+        setSecondScene(false);
+        setThirdScene(false);
+      } else if (window.scrollY >= 350 && window.scrollY < 850) {
+        setSecondScene(true);
+        setFirstScene(false);
+        setThirdScene(false);
+      } else if (window.scrollY >= 850) {
+        setThirdScene(true);
+        setSecondScene(false);
+        setFirstScene(false);
+      }
+    };
+
+    document.addEventListener('scroll', handleScenes, { passive: true });
+
+    return () => {
+      // clean up the event handler when the component unmounts
+      document.removeEventListener('scroll', handleScenes);
+    };
+  }, []);
+
   return (
     <div className={styles.introContainer}>
       <div className={styles.introBackground}></div>
-      <Image
-        className={styles.introImg}
-        src='/introImg/intro-1.jpeg'
-        alt='turtle 1'
-        layout='fill'
-        objectFit='cover'
+      <div
+        className={
+          firstScene
+            ? `${styles.introImg1} ${styles.activeImg}`
+            : `
+            ${styles.introImg1}`
+        }
       />
+      <div
+        className={
+          secondScene
+            ? `${styles.introImg2} ${styles.activeImg}`
+            : `
+            ${styles.introImg2}`
+        }
+      ></div>
+      <div
+        className={
+          thirdScene
+            ? `${styles.introImg3} ${styles.activeImg}`
+            : `
+            ${styles.introImg3}`
+        }
+      ></div>
 
-      <Image
-        className={styles.introImg}
-        src='/introImg/intro-2.jpeg'
-        alt='turtle 1'
-        layout='fill'
-        objectFit='cover'
-      />
-
-      <Image
-        className={styles.introImg}
-        src='/introImg/intro-3.jpeg'
-        alt='turtle 1'
-        layout='fill'
-        objectFit='cover'
-      />
       <div className={styles.introDialogs}>
         <div className={styles.dialogContainer}>
           <div id='0' className={styles.dialog}>
