@@ -24,11 +24,11 @@ const Intro = () => {
         setSecondScene(true);
         setFirstScene(false);
         setThirdScene(false);
-      } else if (window.scrollY >= 850 && window.scrollY < 1550) {
+      } else if (window.scrollY >= 850 && window.scrollY < 1650) {
         setThirdScene(true);
         setSecondScene(false);
         setFirstScene(false);
-      } else if (window.scrollY >= 1550) {
+      } else if (window.scrollY >= 1650) {
         setShowIntro(false);
       }
     };
