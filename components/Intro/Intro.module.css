@@ -1,5 +1,5 @@
 .introContainer {
-  /* display: none; */
+  display: none;
 }
 
 .introBackground {
@@ -7,10 +7,10 @@
   z-index: -2;
   height: 100%;
   width: 100%;
-  /* background-color: black; */
-  background-image: url(/introImg/intro-1.jpeg);
+  background-color: black;
+  /* background-image: url(/introImg/intro-1.jpeg);
   background-position: center center;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .introImg1 {

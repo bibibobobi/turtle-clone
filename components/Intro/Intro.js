@@ -5,9 +5,10 @@ import styles from './Intro.module.css';
 
 const Intro = () => {
   // determined if page has scrolled and if the view is on mobile
-  const [firstScene, setFirstScene] = useState(false);
+  const [firstScene, setFirstScene] = useState(true);
   const [secondScene, setSecondScene] = useState(false);
   const [thirdScene, setThirdScene] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
 
   // change state on scroll
   useEffect(() => {
@@ -15,18 +16,20 @@ const Intro = () => {
       console.log(window.scrollY);
       //305 850 1580
 
-      if (window.scrollY >= 0 && window.scrollY < 350) {
+      if (window.scrollY >= 0 && window.scrollY < 400) {
         setFirstScene(true);
         setSecondScene(false);
         setThirdScene(false);
-      } else if (window.scrollY >= 350 && window.scrollY < 850) {
+      } else if (window.scrollY >= 400 && window.scrollY < 850) {
         setSecondScene(true);
         setFirstScene(false);
         setThirdScene(false);
-      } else if (window.scrollY >= 850) {
+      } else if (window.scrollY >= 850 && window.scrollY < 1550) {
         setThirdScene(true);
         setSecondScene(false);
         setFirstScene(false);
+      } else if (window.scrollY >= 1550) {
+        setShowIntro(false);
       }
     };
 
@@ -38,8 +41,12 @@ const Intro = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+  }, []);
+
   return (
-    <div className={styles.introContainer}>
+    <div className={showIntro ? '' : `${styles.introContainer}`}>
       <div className={styles.introBackground}></div>
       <div
         className={
