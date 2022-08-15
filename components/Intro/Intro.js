@@ -5,13 +5,20 @@ import { useInView } from 'react-intersection-observer';
 import styles from './Intro.module.css';
 
 const Intro = () => {
-  // determined if page has scrolled and if the view is on mobile
+  //Observe the Ending Anchor
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true,
+  });
+  console.log({ inView });
+
+  // Manage scenes state
   const [firstScene, setFirstScene] = useState(true);
   const [secondScene, setSecondScene] = useState(false);
   const [thirdScene, setThirdScene] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
 
-  // change state on scroll
+  // change scenes on scroll
   useEffect(() => {
     const handleScenes = () => {
       console.log(window.scrollY);
@@ -24,12 +31,10 @@ const Intro = () => {
         setSecondScene(true);
         setFirstScene(false);
         setThirdScene(false);
-      } else if (window.scrollY >= 850 && window.scrollY < 1650) {
+      } else if (window.scrollY >= 850 && window.scrollY) {
         setThirdScene(true);
         setSecondScene(false);
         setFirstScene(false);
-      } else if (window.scrollY >= 1650) {
-        // setShowIntro(false);
       }
     };
 
@@ -41,12 +46,8 @@ const Intro = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   window.history.scrollRestoration = 'manual';
-  // }, []);
-
   return (
-    <div className={showIntro ? '' : `${styles.introContainer}`}>
+    <div className={inView ? `${styles.introContainer}` : ''}>
       <div className={styles.introBackground}></div>
       <div
         className={
@@ -100,7 +101,7 @@ const Intro = () => {
           className={`${styles.dialogContainer} ${styles.dialogContainerLast}`}
         >
           <div>
-            <div>.</div>
+            <div ref={ref}>.</div>
           </div>
         </div>
       </div>

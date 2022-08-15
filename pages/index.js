@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
-
 import Intro from '../components/Intro/Intro';
 import Nav from '../components/Nav/Nav';
 
@@ -15,6 +13,7 @@ export default function Home() {
       </Head>
       <Intro />
       <Nav />
+
       <div className={styles.container}>Hello</div>
     </>
   );
