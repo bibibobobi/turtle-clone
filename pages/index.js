@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import Intro from '../components/Intro/Intro';
+import Nav from '../components/Nav/Nav';
 
 import styles from '../styles/Home.module.css';
 
@@ -13,6 +14,7 @@ export default function Home() {
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <Intro />
+      <Nav />
       <div className={styles.container}>Hello</div>
     </>
   );

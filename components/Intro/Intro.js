@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import styles from './Intro.module.css';
 
@@ -14,7 +15,6 @@ const Intro = () => {
   useEffect(() => {
     const handleScenes = () => {
       console.log(window.scrollY);
-      //305 850 1580
 
       if (window.scrollY >= 0 && window.scrollY < 400) {
         setFirstScene(true);
@@ -29,7 +29,7 @@ const Intro = () => {
         setSecondScene(false);
         setFirstScene(false);
       } else if (window.scrollY >= 1650) {
-        setShowIntro(false);
+        // setShowIntro(false);
       }
     };
 
@@ -41,9 +41,9 @@ const Intro = () => {
     };
   }, []);
 
-  useEffect(() => {
-    window.history.scrollRestoration = 'manual';
-  }, []);
+  // useEffect(() => {
+  //   window.history.scrollRestoration = 'manual';
+  // }, []);
 
   return (
     <div className={showIntro ? '' : `${styles.introContainer}`}>
