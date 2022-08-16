@@ -1,3 +1,12 @@
 .title {
-  color: #fff;
+  color: rgb(237, 14, 14);
+}
+
+.navWrapper {
+  opacity: 0;
+}
+
+.showNav {
+  opacity: 1;
+  transition: opacity 2500ms ease 0.1s;
 }

@@ -11,7 +11,6 @@ const Intro = () => {
     threshold: 0,
     triggerOnce: true,
   });
-  console.log({ inView });
 
   // Manage scenes state
   const [firstScene, setFirstScene] = useState(true);
@@ -21,8 +20,6 @@ const Intro = () => {
   // change scenes on scroll
   useEffect(() => {
     const handleScenes = () => {
-      console.log(window.scrollY);
-
       if (window.scrollY >= 0 && window.scrollY < 400) {
         setFirstScene(true);
         setSecondScene(false);
@@ -47,7 +44,7 @@ const Intro = () => {
   }, []);
 
   return (
-    <div className={inView ? `${styles.introContainer}` : ''}>
+    <div className={inView ? `${styles.hideIntro}` : ''}>
       <div className={styles.introBackground}></div>
       <div
         className={
